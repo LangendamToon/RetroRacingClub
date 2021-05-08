@@ -8,6 +8,7 @@ public class LoginCheck {
        nietBetaalt = BE;
        blacklist = BL;
     }
+
     public boolean check(String emailVerified){
         return nietBetaalt || (!email.equals(emailVerified)) || blacklist;
     }
