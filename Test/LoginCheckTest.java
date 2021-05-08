@@ -7,7 +7,12 @@ public class LoginCheckTest {
 
     @Test
     public void check() {
-        LoginCheck loginCheck = new LoginCheck("john@doe.nl",false,false);
-        Assert.assertFalse(loginCheck.check("john@doe.nl"));
+        LoginCheck loginCheck1 = new LoginCheck("john@doe.nl",false,false);
+        LoginCheck loginCheck2 = new LoginCheck("john@doe.nl",true,false);
+        LoginCheck loginCheck3 = new LoginCheck("john@doe.nl",false,true);
+        Assert.assertFalse(loginCheck1.check("john@doe.nl"));
+        Assert.assertTrue(loginCheck1.check("john@do.nl"));
+        Assert.assertTrue(loginCheck2.check("john@doe.nl"));
+        Assert.assertTrue(loginCheck3.check("john@doe.nl"));
     }
 }
