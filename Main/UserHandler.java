@@ -14,4 +14,8 @@ public class UserHandler {
             System.out.println("Gebruiker: "+ user.getName());
         }
     }
+
+    public ArrayList<User> getUsers() {
+        return users;
+    }
 }

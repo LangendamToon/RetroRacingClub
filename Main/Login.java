@@ -5,10 +5,8 @@ public class Login {
     private static Login singleton;
 
     private Login(){
-        users.add(new User("Toon","t.langendam@gmail.com","kiwi2000","ADMIN"));
-        users.add(new User("Joep","joep@gmail.com","kiwi2001","USER"));
-        users.add(new User("Piet","piet@gmail.com","kiwi2002","USER"));
-        users.add(new User("Jan","jan@gmail.com","kiwi2003","USER"));
+        UserHandler userHandler = new UserHandler();
+        users = userHandler.getUsers();
     }
 
     public static Login getInstance(){
@@ -19,8 +17,13 @@ public class Login {
     }
 
     public void loginUser(User user){
-        if(user.getEmail().equals("t.langendam@gmail.com") && user.getPassword().equals("kiwi2000")){
-            System.out.println("U bent nu ingelogd");
+        for (User loginUser : users){
+            if(loginUser.getEmail().equals(user.getEmail()) && loginUser.getPassword().equals(user.getPassword())){
+                System.out.println("U bent nu ingelogd");
+                System.out.println("Wat wilt u doen?");
+                return;
+            }
         }
+        System.out.println("Verkeerd wachtwoord of email");
     }
 }
