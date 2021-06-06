@@ -16,14 +16,14 @@ public class Login {
         return singleton;
     }
 
-    public void loginUser(User user){
+    public User loginUser(String email, String password){
         for (User loginUser : users){
-            if(loginUser.getEmail().equals(user.getEmail()) && loginUser.getPassword().equals(user.getPassword())){
+            if(loginUser.getEmail().equals(email) && loginUser.getPassword().equals(password)){
                 System.out.println("U bent nu ingelogd");
-                System.out.println("Wat wilt u doen?");
-                return;
+                return loginUser;
             }
         }
         System.out.println("Verkeerd wachtwoord of email");
+        return null;
     }
 }
