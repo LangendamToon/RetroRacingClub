@@ -1,34 +1,31 @@
 public class Evenement {
-    private static double PRIJS = 35.0;
-    private static double PARKEREN = 5.0;
+    private String name;
+    private String date;
+    private String circuit;
 
-    public static double getTotalePrijs(int leeftijd, boolean lid, int youngtimer, int maanden){
-        double prijs = 0;
-        double korting = 1;
-        double parkeren = 0;
+    public Evenement(String name, String date, String circuit){
+        this.name = name;
+        this.date = date;
+        this.circuit = circuit;
+    }
 
-        if(leeftijd < 5){
-            return prijs;
-        } else if(leeftijd < 13){
-            prijs = PRIJS/2;
-        } else {
-            prijs = PRIJS;
-        }
+    public void showEvenement(){
+        System.out.println("----------------------------------------");
+        System.out.println("Evenement: "+name);
+        System.out.println("Datum: "+date);
+        System.out.println("Circuit: "+circuit);
+        System.out.println("----------------------------------------");
+    }
 
-        if(lid){
-            korting -= 0.15;
-        }
+    public String getName() {
+        return name;
+    }
 
-        if(youngtimer >= 25){
-            parkeren = PARKEREN * 0.75;
-        } else {
-            parkeren = PARKEREN;
-        }
+    public String getDate() {
+        return date;
+    }
 
-        if (maanden >= 48){
-            korting -= 0.1;
-        }
-
-        return (prijs * korting) + parkeren;
+    public String getCircuit() {
+        return circuit;
     }
 }
