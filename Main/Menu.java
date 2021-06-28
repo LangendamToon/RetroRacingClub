@@ -1,6 +1,10 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menu {
+
+    private static ArrayList<User> users = new ArrayList<User>();
+
     public Menu(User user){
         menu(user);
     }
@@ -9,6 +13,7 @@ public class Menu {
 
         Scanner scanner = new Scanner(System.in);
         Evenement ev = new Evenement("Historic Grand Prix", "24/05/2022", "Zandvoort/Nederland");
+        users = new UserHandler().getUsers();
 
         if(user.getRole().equals("ADMIN")){
             System.out.println("----------------------------------------");
@@ -23,7 +28,25 @@ public class Menu {
                     ev.showEvenement();
                     break;
                 case 2:
-                    new AdminHandler().editUser(user);
+                    System.out.println("Welke gebruiker wil je aanpassen?");
+                    int i = 0;
+                    for(User user1 : users){
+                        i++;
+                        System.out.println(i+" : "+ user1.getName());
+                    }
+                    Integer numI = scanner.nextInt();
+                    User editUser = new User(null,null,null,null);
+                    if(numI == 1) {
+                        editUser = users.get(0);
+                    } else if (numI == 2) {
+                        editUser = users.get(1);
+                        break;
+                    } else if(numI == 3) {
+                        editUser = users.get(2);
+                    } else {
+                        editUser = users.get(3);
+                    }
+                    new AdminHandler().editUser(editUser);
                     break;
                 case 3:
                     new AdminHandler().showUsers();
