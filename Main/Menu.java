@@ -3,72 +3,29 @@ import java.util.Scanner;
 
 public class Menu {
 
-    private static ArrayList<User> users = new ArrayList<User>();
+    private static ArrayList<User> users = new AdminHandler().getUsers();
+    private static Evenement ev = new Evenement("Historic Grand Prix", "24/05/2022", "Zandvoort/Nederland");
+    private static Scanner scanner = new Scanner(System.in);
 
     public Menu(User user){
         menu(user);
     }
 
     public static void menu(User user) {
-
-        Scanner scanner = new Scanner(System.in);
-        Evenement ev = new Evenement("Historic Grand Prix", "24/05/2022", "Zandvoort/Nederland");
-        users = new AdminHandler().getUsers();
-
         if(user.getRole().equals("ADMIN")){
             menuItemAdmin();
             Integer num = scanner.nextInt();
-            switch (num) {
-                case 1:
-                    ev.showEvenement();
-                    break;
-                case 2:
-                    System.out.println("Welke gebruiker wil je aanpassen?");
-                    int i = 0;
-                    for(User user1 : users){
-                        i++;
-                        System.out.println(i+" : "+ user1.getName());
-                    }
-                    Integer numI = scanner.nextInt();
-                    User editUser = new User(null,null,null,null);
-                    if(numI == 1) {
-                        editUser = users.get(0);
-                    } else if (numI == 2) {
-                        editUser = users.get(1);
-                        break;
-                    } else if(numI == 3) {
-                        editUser = users.get(2);
-                    } else {
-                        editUser = users.get(3);
-                    }
-                    new AdminHandler().editUser(editUser);
-                    break;
-                case 3:
-                    new AdminHandler().showUsers();
-                    break;
-            }
+            menuProcesAdmin(num);
         } else if(user.getRole().equals("SECRETARY")){
             menuItemSecretary();
             Integer num = scanner.nextInt();
-            switch (num) {
-                case 1:
-                    ev.showEvenement();
-                    break;
-                case 2:
-                    new SecretaryHandler().showUsers();
-                    break;
-            }
+            menuProcesSecretary(num);
         } else {
             menuItemUser();
             Integer num = scanner.nextInt();
-            switch (num) {
-                case 1:
-                    ev.showEvenement();
-                    break;
-            }
+            menuProcesUser(num);
         }
         backToMenu(user);
-
     }
 
     public static void backToMenu(User user) {
@@ -112,4 +69,54 @@ public class Menu {
         System.out.println("----------------------------------------");
     }
 
+    private static void menuProcesAdmin(Integer num){
+        switch (num) {
+            case 1:
+                ev.showEvenement();
+                break;
+            case 2:
+                System.out.println("Welke gebruiker wil je aanpassen?");
+                int i = 0;
+                for(User user1 : users){
+                    i++;
+                    System.out.println(i+" : "+ user1.getName());
+                }
+                Integer numI = scanner.nextInt();
+                User editUser = new User(null,null,null,null);
+                if(numI == 1) {
+                    editUser = users.get(0);
+                } else if (numI == 2) {
+                    editUser = users.get(1);
+                    break;
+                } else if(numI == 3) {
+                    editUser = users.get(2);
+                } else {
+                    editUser = users.get(3);
+                }
+                new AdminHandler().editUser(editUser);
+                break;
+            case 3:
+                new AdminHandler().showUsers();
+                break;
+        }
+    }
+
+    private static void menuProcesSecretary(Integer num){
+        switch (num) {
+            case 1:
+                ev.showEvenement();
+                break;
+            case 2:
+                new SecretaryHandler().showUsers();
+                break;
+        }
+    }
+
+    private static void menuProcesUser(Integer num){
+        switch (num) {
+            case 1:
+                ev.showEvenement();
+                break;
+        }
+    }
 }
