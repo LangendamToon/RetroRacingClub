@@ -82,17 +82,7 @@ public class Menu {
                     System.out.println(i+" : "+ user1.getName());
                 }
                 Integer numI = scanner.nextInt();
-                User editUser = new User(null,null,null,null);
-                if(numI == 1) {
-                    editUser = users.get(0);
-                } else if (numI == 2) {
-                    editUser = users.get(1);
-                    break;
-                } else if(numI == 3) {
-                    editUser = users.get(2);
-                } else {
-                    editUser = users.get(3);
-                }
+                User editUser = users.get(numI - 1);
                 new AdminHandler().editUser(editUser);
                 break;
             case 3:
