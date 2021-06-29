@@ -13,15 +13,10 @@ public class Menu {
 
         Scanner scanner = new Scanner(System.in);
         Evenement ev = new Evenement("Historic Grand Prix", "24/05/2022", "Zandvoort/Nederland");
-        users = new UserHandler().getUsers();
+        users = new AdminHandler().getUsers();
 
         if(user.getRole().equals("ADMIN")){
-            System.out.println("----------------------------------------");
-            System.out.println("Wat wilt u doen?");
-            System.out.println("1 : Evenement bekijken");
-            System.out.println("2 : Gebruikers Aanpassen");
-            System.out.println("3 : Gebruikers bekijken");
-            System.out.println("----------------------------------------");
+            menuItemAdmin();
             Integer num = scanner.nextInt();
             switch (num) {
                 case 1:
@@ -53,11 +48,7 @@ public class Menu {
                     break;
             }
         } else if(user.getRole().equals("SECRETARY")){
-            System.out.println("----------------------------------------");
-            System.out.println("Wat wilt u doen?");
-            System.out.println("1 : Evenement bekijken");;
-            System.out.println("2 : Gebruikers bekijken");
-            System.out.println("----------------------------------------");
+            menuItemSecretary();
             Integer num = scanner.nextInt();
             switch (num) {
                 case 1:
@@ -68,10 +59,7 @@ public class Menu {
                     break;
             }
         } else {
-            System.out.println("----------------------------------------");
-            System.out.println("Wat wilt u doen?");
-            System.out.println("1 : Evenement bekijken");;
-            System.out.println("----------------------------------------");
+            menuItemUser();
             Integer num = scanner.nextInt();
             switch (num) {
                 case 1:
@@ -98,6 +86,30 @@ public class Menu {
             }
         }
 
+    }
+
+    private static void menuItemUser(){
+        System.out.println("----------------------------------------");
+        System.out.println("Wat wilt u doen?");
+        System.out.println("1 : Evenement bekijken");;
+        System.out.println("----------------------------------------");
+    }
+
+    private static void menuItemSecretary(){
+        System.out.println("----------------------------------------");
+        System.out.println("Wat wilt u doen?");
+        System.out.println("1 : Evenement bekijken");;
+        System.out.println("2 : Gebruikers bekijken");
+        System.out.println("----------------------------------------");
+    }
+
+    private static void menuItemAdmin(){
+        System.out.println("----------------------------------------");
+        System.out.println("Wat wilt u doen?");
+        System.out.println("1 : Evenement bekijken");
+        System.out.println("2 : Gebruikers Aanpassen");
+        System.out.println("3 : Gebruikers bekijken");
+        System.out.println("----------------------------------------");
     }
 
 }
