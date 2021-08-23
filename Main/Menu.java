@@ -3,20 +3,22 @@ import java.util.Scanner;
 
 public class Menu {
 
-    private static ArrayList<User> users = new AdminHandler().getUsers();
+    private static ArrayList<User> users = new Database().getUsers();
     private static Evenement ev = new Evenement("Historic Grand Prix", "24/05/2022", "Zandvoort/Nederland");
     private static Scanner scanner = new Scanner(System.in);
+    private User user;
 
     public Menu(User user){
-        menu(user);
+        this.user = user;
+        menu();
     }
 
-    public static void menu(User user) {
-        if(user.getRole().equals("ADMIN")){
+    public void menu() {
+        if(this.user.getRole().equals("ADMIN")){
             menuItemAdmin();
             Integer num = scanner.nextInt();
             menuProcesAdmin(num);
-        } else if(user.getRole().equals("SECRETARY")){
+        } else if(this.user.getRole().equals("SECRETARY")){
             menuItemSecretary();
             Integer num = scanner.nextInt();
             menuProcesSecretary(num);
@@ -25,16 +27,16 @@ public class Menu {
             Integer num = scanner.nextInt();
             menuProcesUser(num);
         }
-        backToMenu(user);
+        backToMenu();
     }
 
-    public static void backToMenu(User user) {
+    public void backToMenu() {
         Scanner jaNee = new Scanner(System.in);
         System.out.println("terug naar het menu? \n(ja/nee)");
         String jaNeeInput = jaNee.nextLine();
 
         if (jaNeeInput.equals("ja") || jaNeeInput.equals("Ja")) {
-            menu(user);
+            menu();
         } else {
             if (jaNeeInput.equals("nee") || jaNeeInput.equals("Nee")) {
                 System.out.println("exiting...");
@@ -83,7 +85,7 @@ public class Menu {
                 }
                 Integer numI = scanner.nextInt();
                 User editUser = users.get(numI - 1);
-                new AdminHandler().editUser(editUser);
+                editUser.editUser();
                 break;
             case 3:
                 new AdminHandler().showUsers();

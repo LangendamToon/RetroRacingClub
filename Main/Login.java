@@ -5,8 +5,7 @@ public class Login {
     private static Login singleton;
 
     private Login(){
-        AdminHandler adminHandler = new AdminHandler();
-        users = adminHandler.getUsers();
+        users = new Database().getUsers();
     }
 
     public static Login getInstance(){
