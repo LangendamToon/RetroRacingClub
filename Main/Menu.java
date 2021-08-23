@@ -20,10 +20,12 @@ public class Menu {
             menuProcesAdmin(num);
         } else if(this.user.getRole().equals("SECRETARY")){
             menuItemSecretary();
+            menuLine();
             Integer num = scanner.nextInt();
             menuProcesSecretary(num);
         } else {
             menuItemUser();
+            menuLine();
             Integer num = scanner.nextInt();
             menuProcesUser(num);
         }
@@ -47,28 +49,25 @@ public class Menu {
 
     }
 
+    public static void menuLine(){
+        System.out.println("----------------------------------------");
+    }
+
     private static void menuItemUser(){
-        System.out.println("----------------------------------------");
+        menuLine();
         System.out.println("Wat wilt u doen?");
-        System.out.println("1 : Evenement bekijken");;
-        System.out.println("----------------------------------------");
+        System.out.println("1 : Evenement bekijken");
     }
 
     private static void menuItemSecretary(){
-        System.out.println("----------------------------------------");
-        System.out.println("Wat wilt u doen?");
-        System.out.println("1 : Evenement bekijken");;
+        menuItemUser();
         System.out.println("2 : Gebruikers bekijken");
-        System.out.println("----------------------------------------");
     }
 
     private static void menuItemAdmin(){
-        System.out.println("----------------------------------------");
-        System.out.println("Wat wilt u doen?");
-        System.out.println("1 : Evenement bekijken");
-        System.out.println("2 : Gebruikers Aanpassen");
+        menuItemSecretary();
         System.out.println("3 : Gebruikers bekijken");
-        System.out.println("----------------------------------------");
+        menuLine();
     }
 
     private static void menuProcesAdmin(Integer num){
