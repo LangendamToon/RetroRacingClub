@@ -5,8 +5,10 @@ public class AdminHandler extends UserHandler {
 
     public void showUsers(){
         System.out.println("----------------------------------------");
+        int i = 0;
         for(User user : users){
-            System.out.println("Gebruiker: "+ user.getName());
+            i++;
+            System.out.println(i +" : "+ user.getName());
         }
         System.out.println("----------------------------------------");
     }

@@ -3,7 +3,6 @@ import java.util.Scanner;
 
 public class Menu {
 
-    private static ArrayList<User> users = new Database().getUsers();
     private static Evenement ev = new Evenement("Historic Grand Prix", "24/05/2022", "Zandvoort/Nederland");
     private static Scanner scanner = new Scanner(System.in);
     private User user;
@@ -66,7 +65,7 @@ public class Menu {
 
     private static void menuItemAdmin(){
         menuItemSecretary();
-        System.out.println("3 : Gebruikers bekijken");
+        System.out.println("3 : Gebruikers aanpassen");
         menuLine();
     }
 
@@ -77,13 +76,9 @@ public class Menu {
                 break;
             case 2:
                 System.out.println("Welke gebruiker wil je aanpassen?");
-                int i = 0;
-                for(User user1 : users){
-                    i++;
-                    System.out.println(i+" : "+ user1.getName());
-                }
+                new AdminHandler().showUsers();
                 Integer numI = scanner.nextInt();
-                User editUser = users.get(numI - 1);
+                User editUser = new Database().getUsers().get(numI - 1);
                 editUser.editUser();
                 break;
             case 3:
